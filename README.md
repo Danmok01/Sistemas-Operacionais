@@ -1,9 +1,6 @@
 # Sistemas-Operacionais
 Trabalho-sistemas-operacionais-leitor-escritor
 
-
-Trabalho de Sistemas Operacionais
-
 Participantes:
 
 Raphael Monteiro da Silva
