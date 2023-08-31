@@ -37,7 +37,7 @@ void * leitor(void*  quant)
         pthread_mutex_lock(&mutex1_controleLeitor_1); // lock para garanitr esclusividade  ao lock e unlock do controlePrivilegio_escritor e que 
                             // o mutex1_controleLeitor_1 garante que so um leitor espere o unlock do controlePrivilegio_escritor
         pthread_mutex_lock(&controlePrivilegio_escritor);      // block para ver se algum escritor esta escrevendo
-        pthread_mutex_lock(&mutex2_controleLeitor_2);  // lock para auterar variavel leitor_lendo
+        pthread_mutex_lock(&mutex2_controleLeitor_2);  // lock para alterar variavel leitor_lendo
         leitor_lendo=leitor_lendo +1;
 
         if(leitor_lendo == 1 )
@@ -51,7 +51,7 @@ void * leitor(void*  quant)
 
         lerBancoDeDados();
 
-        pthread_mutex_lock(&mutex2_controleLeitor_2);  // lock para auterar variavel leitor_lendo
+        pthread_mutex_lock(&mutex2_controleLeitor_2);  // lock para alterar variavel leitor_lendo
         leitor_lendo=leitor_lendo -1;
 
         if(leitor_lendo == 0)
@@ -76,7 +76,7 @@ void * escritor(void* quant)
     while (1)
     {
         escritorPedindoAcesso();
-        pthread_mutex_lock(&mutex3_controleEscritor);  // lock para auterar variavel quant_escritor
+        pthread_mutex_lock(&mutex3_controleEscritor);  // lock para alterar variavel quant_escritor
         
         quant_escritor = quant_escritor +1;
 
@@ -91,7 +91,7 @@ void * escritor(void* quant)
         escreverBancoDeDados();
 
         pthread_mutex_unlock(&bancoDados);  // unlock do escritor
-        pthread_mutex_lock(&mutex3_controleEscritor);  // lock para auterar variavel quant_escritor
+        pthread_mutex_lock(&mutex3_controleEscritor);  // lock para alterar variavel quant_escritor
 
         quant_escritor = quant_escritor -1;
 
